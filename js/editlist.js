@@ -1,8 +1,8 @@
 $(document).ready(function () {
     $listNameSelector = $('#listName');
     if (!(document.location.search.length) || getParameterByName('ID') == null || getParameterByName('name') == null) {
-        alert("No list data present. Closing window.");
-        window.close();
+        alert("No list data present.");
+        // window.close();
     }
     $('#listID').val(getParameterByName('ID'));
     $listNameSelector.val(getParameterByName('name'));
@@ -24,10 +24,8 @@ $(document).ready(function () {
         }
     }
     $('#closeModal').click(function () {
-        window.close();
-    });
-    $('#closeModalFooter').click(function () {
-        window.close();
+        alert("Unable to close window due to Firefox security policy. Please close this window manually.");
+        // window.close();
     });
     $('#saveList').click(function () {
         const listID = $('#listID').val();

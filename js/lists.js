@@ -7,7 +7,7 @@ function saveList(Id, newListObject) {
     localStorage.setItem(Id, JSON.stringify(newListObject));
     localStorage.setItem("maxID", Id);
     alert("List saved successfully!");
-    window.close();
+    // window.close();
 }
 
 /**
@@ -18,7 +18,7 @@ function saveSettings(userSettings) {
     removeList("settings", false);
     localStorage.setItem("settings", JSON.stringify(userSettings));
     alert("Settings successfully saved!");
-    window.close();
+    // window.close();
 }
 
 /**

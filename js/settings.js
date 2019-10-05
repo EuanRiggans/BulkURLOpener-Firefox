@@ -63,10 +63,8 @@ $(document).ready(function () {
     $("#defaultList option[id=" + selectedListID + "]").prop('selected', true);
     $("#customTheme option[id=" + selectedTheme + "]").prop('selected', true);
     document.getElementById("closeModal").addEventListener('click', (e) => {
-        window.close();
-    });
-    document.getElementById("closeModalFooter").addEventListener('click', (e) => {
-        window.close();
+        alert("Unable to close window due to Firefox security policy. Please close this window manually.");
+        // window.close();
     });
     document.getElementById("saveSettings").addEventListener('click', (e) => {
         initSettingsSave();

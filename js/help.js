@@ -1,6 +1,7 @@
-$(document).ready(function () {   
+$(document).ready(function () {
     $('#closeModal').click(function () {
-        window.close();
+        alert("Unable to close window due to Firefox security policy. Please close this window manually.");
+        // window.close();
     });
     $('#openChangelog').click(function () {
         chrome.tabs.create({'url': chrome.extension.getURL('changelog.html')});

@@ -1,3 +1,5 @@
+// @todo Find a potential workaround for the window.close not working on Firefox
+
 $(() => {
     upgradeToJSONFormatting();
     createSettings();
@@ -38,7 +40,7 @@ $(() => {
     } else {
         document.getElementById("openInPopup").addEventListener('click', () => {
             popupMain();
-            window.close();
+            // window.close();
         });
     }
     document.getElementById("openButton").addEventListener('click', () => {
