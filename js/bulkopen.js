@@ -93,18 +93,18 @@ function openTextAreaList() {
  * Gets all of the urls for the currently opened tabs
  */
 function getCurrentTabs() {
-    var getCurrentlyOpenedTabs = browser.tabs.query({});
+    const getCurrentlyOpenedTabs = browser.tabs.query({});
     getCurrentlyOpenedTabs.then((tabs) => {
-        var tabsArray = new Array();
+        const tabsArray = [];
         for (let tab of tabs) {
             tabsArray.push(tab.url);
         }
         if (!tabsArray.length) {
             return;
         }
-        var listTextArea = document.getElementById("list");
+        const listTextArea = document.getElementById("list");
         clearLinksList();
-        for (var i = 0; i < tabs.length; ++i) {
+        for (let i = 0; i < tabs.length; ++i) {
             listTextArea.value += tabsArray[i] + "\n";
         }
         listTextArea.select();
