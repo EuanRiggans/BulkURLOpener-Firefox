@@ -19,18 +19,6 @@ $(() => {
     }
     if (getSetting("default_list_open") === -1 || getSetting("default_list_open") === undefined) {
         getCurrentTabs();
-        // chrome.windows.getCurrent(function (window) {
-        //     chrome.tabs.getAllInWindow(window.id, function (tabs) {
-        //         if (!tabs.length) return;
-        //
-        //         const listTextArea = document.getElementById("list");
-        //
-        //         for (let i = 0; i < tabs.length; ++i) {
-        //             listTextArea.value += tabs[i].url + "\n";
-        //         }
-        //         listTextArea.select();
-        //     });
-        // });
     } else {
         openListByID(getSetting("default_list_open"));
     }
