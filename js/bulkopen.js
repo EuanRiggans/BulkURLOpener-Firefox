@@ -93,8 +93,7 @@ function openTextAreaList() {
  * Gets all of the urls for the currently opened tabs
  */
 function getCurrentTabs() {
-    const getCurrentlyOpenedTabs = browser.tabs.query({});
-    getCurrentlyOpenedTabs.then((tabs) => {
+    browser.tabs.query({ }, tabs => {
         const tabsArray = [];
         for (let tab of tabs) {
             tabsArray.push(tab.url);
@@ -177,7 +176,7 @@ function openList(list) {
             linksToOpen.list_links.push(link);
         }
         localStorage.setItem("linksToOpen", JSON.stringify(linksToOpen));
-        chrome.tabs.create({'url': chrome.extension.getURL('openingtabs.html')});
+        browser.tabs.create({'url': browser.extension.getURL('openingtabs.html')});
     }
 }
 
@@ -219,7 +218,7 @@ function openSaveNewListDialog() {
 
     }
     localStorage.setItem("temp", JSON.stringify(tempList));
-    chrome.tabs.create({'url': chrome.extension.getURL('newlist.html')});
+    browser.tabs.create({'url': browser.extension.getURL('newlist.html')});
 }
 
 /**
@@ -275,28 +274,28 @@ function openListByID(id) {
  * Opens the settings page
  */
 function openSettingsDialog() {
-    chrome.tabs.create({'url': chrome.extension.getURL('settings.html')});
+    browser.tabs.create({'url': browser.extension.getURL('settings.html')});
 }
 
 /**
  * Opens the help page
  */
 function openHelpDialog() {
-    chrome.tabs.create({'url': chrome.extension.getURL('help.html')});
+    browser.tabs.create({'url': browser.extension.getURL('help.html')});
 }
 
 /**
  * Opens the dialog to import user data from JSON format
  */
 function openImportDialog() {
-    chrome.tabs.create({'url': chrome.extension.getURL('import.html')});
+    browser.tabs.create({'url': browser.extension.getURL('import.html')});
 }
 
 /**
  * Opens the dialog to export user data as JSON
  */
 function openExportDialog() {
-    chrome.tabs.create({'url': chrome.extension.getURL('export.html')});
+    browser.tabs.create({'url': browser.extension.getURL('export.html')});
 }
 
 /**
@@ -320,7 +319,7 @@ function editSelectedList() {
         alert("You need to select a list");
         return;
     }
-    chrome.tabs.create({'url': chrome.extension.getURL('editlist.html?id=' + getSelectedListID() + "&name=" + getSelectedList())});
+    browser.tabs.create({'url': browser.extension.getURL('editlist.html?id=' + getSelectedListID() + "&name=" + getSelectedList())});
 }
 
 /**
@@ -375,7 +374,7 @@ function getSetting(setting) {
  * @returns {string}    The current version
  */
 function getCurrentVersion() {
-    const manifestData = chrome.runtime.getManifest();
+    const manifestData = browser.runtime.getManifest();
     return (manifestData.version);
 }
 
@@ -383,7 +382,7 @@ function getCurrentVersion() {
  * Creates the extension in a popup window
  */
 function popupMain() {
-    chrome.windows.create({
+    browser.windows.create({
         url: "popup.html?popup=true",
         type: "popup",
         width: 755,
