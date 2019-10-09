@@ -93,7 +93,7 @@ function openTextAreaList() {
  * Gets all of the urls for the currently opened tabs
  */
 function getCurrentTabs() {
-    browser.tabs.query({ }, tabs => {
+    browser.tabs.query({}, tabs => {
         const tabsArray = [];
         for (let tab of tabs) {
             tabsArray.push(tab.url);
@@ -176,7 +176,10 @@ function openList(list) {
             linksToOpen.list_links.push(link);
         }
         localStorage.setItem("linksToOpen", JSON.stringify(linksToOpen));
-        browser.tabs.create({'url': browser.extension.getURL('openingtabs.html')});
+        browser.tabs.create({
+            active: true,
+            'url': browser.extension.getURL('openingtabs.html')
+        });
     }
 }
 
@@ -195,7 +198,9 @@ function linksIterator(i, strings, tabCreationDelay) {
     if (!isProbablyUrl(url)) {
         url = 'http://www.google.com/search?q=' + encodeURI(url);
     }
-    browser.tabs.create({'url': url,});
+    browser.tabs.create({
+        'url': url
+    });
     i++;
     if (i < strings.length) {
         setTimeout(linksIterator, tabCreationDelay, i, strings, tabCreationDelay);
@@ -218,7 +223,10 @@ function openSaveNewListDialog() {
 
     }
     localStorage.setItem("temp", JSON.stringify(tempList));
-    browser.tabs.create({'url': browser.extension.getURL('newlist.html')});
+    browser.tabs.create({
+        active: true,
+        'url': browser.extension.getURL('newlist.html')
+    });
 }
 
 /**
@@ -274,28 +282,40 @@ function openListByID(id) {
  * Opens the settings page
  */
 function openSettingsDialog() {
-    browser.tabs.create({'url': browser.extension.getURL('settings.html')});
+    browser.tabs.create({
+        active: true,
+        'url': browser.extension.getURL('settings.html')
+    });
 }
 
 /**
  * Opens the help page
  */
 function openHelpDialog() {
-    browser.tabs.create({'url': browser.extension.getURL('help.html')});
+    browser.tabs.create({
+        active: true,
+        'url': browser.extension.getURL('help.html')
+    });
 }
 
 /**
  * Opens the dialog to import user data from JSON format
  */
 function openImportDialog() {
-    browser.tabs.create({'url': browser.extension.getURL('import.html')});
+    browser.tabs.create({
+        active: true,
+        'url': browser.extension.getURL('import.html')
+    });
 }
 
 /**
  * Opens the dialog to export user data as JSON
  */
 function openExportDialog() {
-    browser.tabs.create({'url': browser.extension.getURL('export.html')});
+    browser.tabs.create({
+        active: true,
+        'url': browser.extension.getURL('export.html')
+    });
 }
 
 /**
@@ -319,7 +339,10 @@ function editSelectedList() {
         alert("You need to select a list");
         return;
     }
-    browser.tabs.create({'url': browser.extension.getURL('editlist.html?id=' + getSelectedListID() + "&name=" + getSelectedList())});
+    browser.tabs.create({
+        active: true,
+        'url': browser.extension.getURL('editlist.html?id=' + getSelectedListID() + "&name=" + getSelectedList())
+    });
 }
 
 /**

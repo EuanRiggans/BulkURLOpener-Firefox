@@ -18,18 +18,25 @@ function linksIterator(i, strings, tabCreationDelay) {
         if (!isProbablyUrl(url)) {
             url = 'http://www.google.com/search?q=' + encodeURI(url);
         }
-        browser.tabs.create({'url':url,});
+        browser.tabs.create({
+            active: false,
+            'url':url
+        });
         i++;
         if(i - 1 < strings.length) {
             if(strings[i] == null || strings[i].trim() === '') {
-                window.close();
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('completed').style.display = 'block';
+                // window.close();
             }
             setTimeout(linksIterator, tabCreationDelay, i, strings, tabCreationDelay);
         }
     } else {
         i++;
         if(i >= strings.length) {
-            window.close();
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('completed').style.display = 'block';
+            // window.close();
         }
         if(i < strings.length) {
             linksIterator(i, strings, tabCreationDelay);
