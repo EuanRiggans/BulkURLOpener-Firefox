@@ -1,4 +1,4 @@
-// @todo Find a potential workaround for the window.close not working on Firefox
+// @todo New feature for 1.4.0: Give user a setting so when they click 'Get list of currently opened tabs', either get all open tabs, or just those in current window
 
 $(() => {
     upgradeToJSONFormatting();
@@ -88,12 +88,12 @@ $(() => {
 function openTextAreaList() {
     openList(document.getElementById("list").value);
 }
-
 /**
  * Gets all of the urls for the currently opened tabs
  */
 function getCurrentTabs() {
-    browser.tabs.query({}, tabs => {
+    let currentWindowSetting = getSetting("currently_opened_tabs_display") !== "allOpenedTabs";
+    browser.tabs.query({ currentWindow: currentWindowSetting }, tabs => {
         const tabsArray = [];
         for (let tab of tabs) {
             tabsArray.push(tab.url);
@@ -375,16 +375,14 @@ function getSetting(setting) {
             switch (settingSelected) {
                 case "tab_creation_delay":
                     return userSettings.tab_creation_delay;
-                    break;
                 case "auto_open_lists":
                     return userSettings.auto_open_lists;
-                    break;
                 case "default_list_open":
                     return userSettings.default_list_open;
-                    break;
                 case "custom_theme":
                     return userSettings.custom_theme;
-                    break;
+                case "currently_opened_tabs_display":
+                    return userSettings.currently_opened_tabs_display;
                 default:
                     break;
             }
