@@ -4,7 +4,7 @@ $(document).ready(function () {
     const $autoOpenSelector = $('#autoOpenLists');
     let selectedListID = -1;
     let selectedTheme = "defaultBootstrap";
-    let shownURLS = "allOpenedTabs";
+    let currentlyOpenedTabsSetting = "allOpenedTabs";
     $tabCreationDelaySelector.val(0);
     let settingsObjPresent = false;
     for (let i = 0; i < localStorage.length; i++) {
@@ -61,6 +61,7 @@ $(document).ready(function () {
                 $('#defaultList').append('<option id="' + parsedList.list_id + '">' + parsedList.list_name + '</option>');
             }
             if (parsedList.object_description === "user_settings") {
+                currentlyOpenedTabsSetting = parsedList.currently_opened_tabs_display;
                 selectedTheme = parsedList.custom_theme;
             }
         } catch (e) {
@@ -69,7 +70,7 @@ $(document).ready(function () {
     }
     $("#defaultList option[id=" + selectedListID + "]").prop('selected', true);
     $("#customTheme option[id=" + selectedTheme + "]").prop('selected', true);
-    $("#currentlyOpenedSetting option[id=" + shownURLS + "]").prop('selected', true);
+    $("#currentlyOpenedSetting option[id=" + currentlyOpenedTabsSetting + "]").prop('selected', true);
     document.getElementById("closeModal").addEventListener('click', (e) => {
         alert("Unable to close window due to Firefox security policy. Please close this window manually.");
         // window.close();
