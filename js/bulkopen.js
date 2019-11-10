@@ -1,5 +1,3 @@
-// @todo New feature for 1.4.0: Give user a setting so when they click 'Get list of currently opened tabs', either get all open tabs, or just those in current window
-
 $(() => {
     upgradeToJSONFormatting();
     createSettings();
