@@ -91,6 +91,9 @@ function openTextAreaList() {
  */
 function getCurrentTabs() {
     let currentWindowSetting = getSetting("currently_opened_tabs_display") !== "allOpenedTabs";
+    if(currentWindowSetting === false) {
+        currentWindowSetting = undefined;
+    }
     browser.tabs.query({ currentWindow: currentWindowSetting }, tabs => {
         const tabsArray = [];
         for (let tab of tabs) {
