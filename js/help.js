@@ -6,7 +6,7 @@ $(document).ready(function () {
     $('#openChangelog').click(function () {
         browser.tabs.create({
             active: true,
-            'url': chrome.extension.getURL('changelog.html')
+            'url': browser.extension.getURL('changelog.html')
         });
     });
 });
