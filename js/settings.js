@@ -49,7 +49,7 @@ $(document).ready(function () {
             }
         }
     }
-    if(!settingsObjPresent) {
+    if (!settingsObjPresent) {
         $('#nightModeGroup').append('<div class="checkbox"><label><input type="checkbox" id="nightMode">&nbsp; Enable night theme</label></div>');
         $('#autoOpenListsGroup').append('<div class="checkbox"><label><input type="checkbox" id="autoOpenLists">&nbsp; Automatically open lists <a id="autoOpenListsTooltip" data-toggle="tooltip" data-placement="top" title="When you select a link list from the dropdown, it will be automatically opened.">(?)</a><b> (Experimental feature)</b></label></div>');
     }
@@ -128,7 +128,9 @@ function initSettingsSave() {
         auto_open_lists: 0,
         default_list_open: -1,
         custom_theme: "defaultBoostrap",
-        currently_opened_tabs_display: "currentWindow"
+        currently_opened_tabs_display: "currentWindow",
+        nonURLHandler: "searchWindow",
+        searchEngine: "google"
     };
     userSettings.tab_creation_delay = tabCreationDelay;
     userSettings.night_mode = nightMode;

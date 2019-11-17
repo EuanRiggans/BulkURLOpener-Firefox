@@ -91,10 +91,12 @@ function openTextAreaList() {
  */
 function getCurrentTabs() {
     let currentWindowSetting = getSetting("currently_opened_tabs_display") !== "allOpenedTabs";
-    if(currentWindowSetting === false) {
+    if (currentWindowSetting === false) {
         currentWindowSetting = undefined;
     }
-    browser.tabs.query({ currentWindow: currentWindowSetting }, tabs => {
+    browser.tabs.query({
+        currentWindow: currentWindowSetting
+    }, tabs => {
         const tabsArray = [];
         for (let tab of tabs) {
             tabsArray.push(tab.url);
@@ -457,7 +459,9 @@ function createSettings() {
             auto_open_lists: 0,
             default_list_open: -1,
             custom_theme: "defaultBoostrap",
-            currently_opened_tabs_display: "currentWindow"
+            currently_opened_tabs_display: "currentWindow",
+            nonURLHandler: "searchWindow",
+            searchEngine: "google"
         };
         localStorage.setItem("settings", JSON.stringify(newSettings));
     }
