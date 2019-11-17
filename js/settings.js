@@ -129,8 +129,8 @@ function initSettingsSave() {
         default_list_open: -1,
         custom_theme: "defaultBoostrap",
         currently_opened_tabs_display: "currentWindow",
-        nonURLHandler: "searchWindow",
-        searchEngine: "google"
+        nonURLHandler: "searchForString",
+        searchEngine: "googleEngine"
     };
     userSettings.tab_creation_delay = tabCreationDelay;
     userSettings.night_mode = nightMode;
