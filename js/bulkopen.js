@@ -460,8 +460,8 @@ function createSettings() {
             default_list_open: -1,
             custom_theme: "defaultBoostrap",
             currently_opened_tabs_display: "currentWindow",
-            nonURLHandler: "searchForString",
-            searchEngine: "googleEngine"
+            non_url_handler: "searchForString",
+            search_engine: "googleEngine"
         };
         localStorage.setItem("settings", JSON.stringify(newSettings));
     }

@@ -5,6 +5,8 @@ $(document).ready(function () {
     let selectedListID = -1;
     let selectedTheme = "defaultBootstrap";
     let currentlyOpenedTabsSetting = "allOpenedTabs";
+    let nonURLHandlerSetting = "searchForString";
+    let searchEngineSetting = "googleEngine";
     $tabCreationDelaySelector.val(0);
     let settingsObjPresent = false;
     for (let i = 0; i < localStorage.length; i++) {
@@ -63,6 +65,8 @@ $(document).ready(function () {
             if (parsedList.object_description === "user_settings") {
                 currentlyOpenedTabsSetting = parsedList.currently_opened_tabs_display;
                 selectedTheme = parsedList.custom_theme;
+                nonURLHandlerSetting = parsedList.non_url_handler;
+                searchEngineSetting = parsedList.search_engine;
             }
         } catch (e) {
             console.log(e);
@@ -71,6 +75,8 @@ $(document).ready(function () {
     $("#defaultList option[id=" + selectedListID + "]").prop('selected', true);
     $("#customTheme option[id=" + selectedTheme + "]").prop('selected', true);
     $("#currentlyOpenedSetting option[id=" + currentlyOpenedTabsSetting + "]").prop('selected', true);
+    $("#nonURLHandlerSetting option[id=" + nonURLHandlerSetting + "]").prop('selected', true);
+    $("#selectedSearchEngineSetting option[id=" + searchEngineSetting + "]").prop('selected', true);
     document.getElementById("closeModal").addEventListener('click', (e) => {
         alert("Unable to close window due to Firefox security policy. Please close this window manually.");
         // window.close();
@@ -111,6 +117,8 @@ function initSettingsSave() {
     const defaultList = getSelectedListID();
     const theme = getSelectedTheme();
     const currentlyOpenedTabsSetting = getCurrentlyOpenedTabsSetting();
+    const nonURLHandlerSetting = getNonURLHandlerSetting();
+    const searchEngineSetting = getSearchEngineSetting();
     if ($nightModeSelector.is(":checked")) {
         nightMode = 1;
     }
@@ -129,8 +137,8 @@ function initSettingsSave() {
         default_list_open: -1,
         custom_theme: "defaultBoostrap",
         currently_opened_tabs_display: "currentWindow",
-        nonURLHandler: "searchForString",
-        searchEngine: "googleEngine"
+        non_url_handler: "searchForString",
+        search_engine: "googleEngine"
     };
     userSettings.tab_creation_delay = tabCreationDelay;
     userSettings.night_mode = nightMode;
@@ -138,6 +146,8 @@ function initSettingsSave() {
     userSettings.default_list_open = parseInt(defaultList);
     userSettings.custom_theme = theme;
     userSettings.currently_opened_tabs_display = currentlyOpenedTabsSetting;
+    userSettings.non_url_handler = nonURLHandlerSetting;
+    userSettings.search_engine = searchEngineSetting;
     saveSettings(userSettings);
 }
 
@@ -155,4 +165,12 @@ function getSelectedTheme() {
 
 function getCurrentlyOpenedTabsSetting() {
     return $('select[id="currentlyOpenedSetting"] option:selected').attr('id');
+}
+
+function getNonURLHandlerSetting() {
+    return $('select[id="nonURLHandlerSetting"] option:selected').attr('id');
+}
+
+function getSearchEngineSetting() {
+    return $('select[id="selectedSearchEngineSetting"] option:selected').attr('id');
 }
