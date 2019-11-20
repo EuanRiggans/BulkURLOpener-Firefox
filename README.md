@@ -1,3 +1,9 @@
+# Repository archived. 
+
+**This repository is now archived, as the two codebases have now been merged. So please visit the active repository. Thanks :)**
+
+New repository: https://github.com/EuanRiggans/BulkURLOpener
+
 # BulkURLOpener
 The Firefox version of the Google Chrome extension of the same name.
 
